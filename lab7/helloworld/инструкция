@@ -1,0 +1,16 @@
+1) скачать и установить MinGw
+2)создать проект например с татим путём C:\Users\poloz\projects\helloworld
+2)запустить main.c
+
+создать папку для работы и загруски туда наших файлов
+mkdir projects 
+cd projects 
+mkdir helloworld 
+cd helloworld 
+code .
+
+
+как настроть dill через консоль(но в папке dill уже настроен)
+gcc -shared -o math_functions.dll math_functions.c -Wl,--out-implib,libmath_functions.a
+gcc -o main main.c -L. -lmath_functions
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Веб воркер от Акселя</title>
+</head>
+<body>
+    <h1>Веб воркер</h1>
+    <div id="output1"></div>
+    <div id="output2"></div>
+    <button id="startStopThread1">Start/Stop Thread 1</button>
+    <button id="startStopThread2">Start/Stop Thread 2</button>
+    <button id="changePriority">Change Priority of Thread 1</button>
+
+    <script>
+        const worker1 = new Worker('worker.js');
+        const worker2 = new Worker('worker.js');
+
+        const output1 = document.getElementById('output1');
+        const output2 = document.getElementById('output2');
+        const startStopThread1 = document.getElementById('startStopThread1');
+        const startStopThread2 = document.getElementById('startStopThread2');
+        const changePriorityBtn = document.getElementById('changePriority');
+
+        let thread1Running = true;
+        let thread2Running = true;
+
+        startStopThread1.addEventListener('click', () => {
+            thread1Running = !thread1Running;
+            startStopThread1.textContent = thread1Running ? 'Stop Thread 1' : 'Start Thread 1';
+        });
+
+        startStopThread2.addEventListener('click', () => {
+            thread2Running = !thread2Running;
+            startStopThread2.textContent = thread2Running ? 'Stop Thread 2' : 'Start Thread 2';
+        });
+
+        changePriorityBtn.addEventListener('click', () => {
+            worker1.postMessage({ type: 'changePriority' });
+        });
+
+        worker1.onmessage = function (e) {
+            output1.textContent = e.data;
+        };
+
+        worker2.onmessage = function (e) {
+            output2.textContent = e.data;
+        };
+
+        setInterval(() => {
+            if (thread1Running) {
+                worker1.postMessage({ type: 'increment' });
+            }
+
+            if (thread2Running) {
+                worker2.postMessage({ type: 'increment' });
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
