@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Калькулятор</title>
+    </head>
+<body>
+
+    <h2>Калькулятор</h2>
+    <input type="text" id="numberInput">
+    <button onclick="calculate()">Вычислить</button>
+    <p id="result"></p>
+
+    <script>
+    function calculate() {
+        var number = parseInt(document.getElementById("numberInput").value);
+        var result = Math.pow(number, 2) - 3 + number;
+        document.getElementById("result").innerHTML = "Результат: " + result;
+    }
+    </script>
+
+</body>
+</html>

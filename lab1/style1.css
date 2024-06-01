@@ -1,0 +1,21 @@
+.button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: green;
+  }
+  
+  .button:hover::after {
+    content: 'пришёл';
+  }
+
+  .button::after {
+    content: 'ушёл';
+  }
+  

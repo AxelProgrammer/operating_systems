@@ -1,0 +1,8 @@
+1) убедитесь что скачен node.js и npm
+2) Установите Electron в проект через консоль
+
+npm install electron
+
+3)После установки Electron запустите приложение
+
+npm start
